@@ -1,8 +1,10 @@
-import React from 'react'
+import {Loader} from './components'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Loader />
+    </div>
   )
 }
 
