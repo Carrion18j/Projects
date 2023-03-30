@@ -1,12 +1,13 @@
-import './App.css'
+import { NavBar, Hero, Cards } from "./components";
 
 function App() {
-
   return (
-    <div className="App">
-      
-    </div>
-  )
+      <div className="mx-[5%]">
+        <NavBar />
+        <Hero />
+        <Cards />
+      </div>
+  );
 }
 
-export default App
+export default App;
