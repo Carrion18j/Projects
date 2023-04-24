@@ -1,18 +1,16 @@
-import { NavBar, Hero, Card1, Card2, Card3 } from "./components";
+import { Hero, Navigation, About, WhatIDo, Contact } from "./section";
 
 function App() {
   return (
-    <div className="mx-[5%]">
-      <NavBar />
-      <Hero />
-      <section>
-        <div className="flex justify-around flex-wrap">
-          <Card1 />
-          <Card2 />
-          <Card3 />
-        </div>
-      </section>
-    </div>
+    <section className="flex flex-col items-center bg-[#1B1F24]">
+      <div className="bg-[#1B1F24]">
+        <Hero />
+        <Navigation />
+        <About />
+        <WhatIDo />
+        <Contact />
+      </div>
+    </section>
   );
 }
 
