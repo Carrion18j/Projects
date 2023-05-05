@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Calculater from "./sections/calculater";
 import Agecalculater from "./sections/agecalculater";
 import "./App.css";
-import { render } from "react-dom";
 
 const App = () => {
   const [renderedItem, setRenderedItem] = useState(<Calculater />);
@@ -11,19 +10,19 @@ const App = () => {
     <section className="app_section">
       <div className="app_renderItems">
         <button
-          className="btn"
+          className="header_button"
           onClick={() => setRenderedItem(<Agecalculater />)}
         >
           <Agecalculater />
         </button>
         <button
-          className="btn"
+          className="header_button"
           onClick={() => setRenderedItem(<Agecalculater />)}
         >
           <Agecalculater />
         </button>
         <button
-          className="btn"
+          className="header_button"
           onClick={() => setRenderedItem(<Agecalculater />)}
         >
           <Agecalculater />

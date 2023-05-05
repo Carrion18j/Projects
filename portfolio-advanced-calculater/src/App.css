@@ -1,12 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* reseting css  */
 body {
   margin: 0px;
   padding: 0px;
-}
-
-/* app */
-
-.app_section {
   background: linear-gradient(
     90deg,
     rgba(141, 206, 225, 1) 0%,
@@ -14,7 +13,10 @@ body {
   );
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
+
+/* app */
 .app_renderItems {
   display: flex;
   flex-wrap: wrap;
@@ -26,8 +28,17 @@ body {
   border-bottom: 10px;
 }
 .app_renderer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+
+.header_button {
+  padding: 8px;
+  background: #8bc4ef;
+  border: 0px;
+  border-radius: 6px;
+  height: 28px;
+  cursor: pointer;
 }
