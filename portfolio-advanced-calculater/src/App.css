@@ -6,11 +6,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: linear-gradient(
-    90deg,
-    rgba(141, 206, 225, 1) 0%,
-    rgba(246, 241, 241, 1) 100%
-  );
+  background: #abcfdc;
   display: flex;
   flex-direction: column;
   overflow: hidden;
