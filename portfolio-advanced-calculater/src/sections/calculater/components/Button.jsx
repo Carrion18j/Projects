@@ -10,7 +10,7 @@ export const Button = (props) => {
             className="items"
             key={index}
             onClick={() => {
-              return (props.Value(item));
+              return props.Value(item);
             }}
           >
             {item}

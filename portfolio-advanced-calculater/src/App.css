@@ -6,7 +6,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: #abcfdc;
+  background: #2d2d2d;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -31,10 +31,13 @@ body {
 }
 
 .header_button {
-  padding: 8px;
-  background: #8bc4ef;
+  padding: 4px;
+  background: #a55814;
   border: 0px;
   border-radius: 6px;
-  height: 28px;
   cursor: pointer;
+}
+.calculater{
+  width: 40px;
+  aspect-ratio: 1/1;
 }
