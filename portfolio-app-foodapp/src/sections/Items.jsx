@@ -1,12 +1,89 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import foodList from "../data/foodList";
 import { motion } from "framer-motion";
 
-const Items = ({ cartArray }) => {
+const Items = () => {
+  const [orderedItems, setOrderedItems] = useState([]);
+
+  useEffect(() => {
+    const FinalOrderedList = React.createContext(orderedItems);
+    console.log(orderedItems);
+  }, [orderedItems]);
+
   return (
     <div className="flex flex-col justify-center absolute left-[50%] transform -translate-x-1/2 top-[80vh] ">
-      {foodList.map(({ name, about, price }, id) => {
+      {foodList.map((items, id) => {
         const [amount, setAmount] = useState(0);
+
+        const ReturningItem = {
+          item: items.name,
+          price: items.price,
+          about: items.about,
+          amount: amount,
+          ItemId: id,
+        };
+
+        const AddOnClickHandeler = () => {
+          amount === 20 ? () => {} : setAmount((e) => e + 1);
+          let newItem;
+          let exsistingArray = orderedItems;
+          const itemIndex = orderedItems.findIndex(
+            (value) => value.item === items.name
+          );
+          if (itemIndex === -1) {
+            newItem = {
+              item: items.name,
+              price: items.price,
+              about: items.about,
+              quantity: 1,
+              ItemId: id,
+            };
+            exsistingArray.push(newItem);
+          } else {
+            const newItem = orderedItems[itemIndex];
+            newItem.quantity = newItem.quantity + 1;
+            exsistingArray.splice(itemIndex, 1);
+            exsistingArray.push(newItem);
+          }
+
+          return setOrderedItems(() => [...exsistingArray]);
+        };
+
+        const DeleteOnClickHandeler = () => {
+          amount === 0 ? () => {} : setAmount((e) => e - 1);
+
+          let newItem;
+          let exsistingArray = orderedItems;
+          const itemIndex = orderedItems.findIndex(
+            (value) => value.item === items.name
+          );
+          if (itemIndex === -1) {
+            newItem = {
+              item: items.name,
+              price: items.price,
+              about: items.about,
+              quantity: 1,
+              ItemId: id,
+            };
+            exsistingArray.push(newItem);
+          } else {
+            const newItem = orderedItems[itemIndex];
+            newItem.quantity = newItem.quantity - 1;
+            exsistingArray.splice(itemIndex, 1);
+            exsistingArray.push(newItem);
+          }
+
+          orderedItems.forEach((e) => {
+            if (e.quantity === 0) {
+              const popedItem = exsistingArray.splice(e.quantity, 1);
+              console.log(popedItem)
+
+              // return setOrderedItems(() => [...popedItem]);
+            }
+          });
+
+          return setOrderedItems(() => [...exsistingArray]);
+        };
 
         return (
           <motion.div
@@ -15,9 +92,11 @@ const Items = ({ cartArray }) => {
             className=" bg-slate-400 p-[20px] flex min-w-[600px] justify-between px-[48px] mb-[20px] rounded-[16px]"
           >
             <div>
-              <h2 className=" font-extrabold text-[18px]">{name}</h2>
-              <p className=" font-medium">{about}</p>
-              <p className=" text-red-800 text-[18px] font-medium">Price: {price}</p>
+              <h2 className=" font-extrabold text-[18px]">{items.name}</h2>
+              <p className=" font-medium">{items.about}</p>
+              <p className=" text-red-800 text-[18px] font-medium">
+                Price: {items.price}
+              </p>
             </div>
             <div>
               <div className="flex">
@@ -33,18 +112,14 @@ const Items = ({ cartArray }) => {
               </div>
               <motion.button
                 whileTap={{ scale: [null, 0.8], duration: 0.4 }}
-                onClick={() => {
-                  amount === 20 ? () => {} : setAmount(amount + 1);
-                }}
+                onClick={AddOnClickHandeler}
                 className=" bg-slate-500 m-[16px] ml-[0px] p-[4px] text-red-900 rounded-[8px] font-medium"
               >
                 + Add
               </motion.button>
               <motion.button
                 whileTap={{ scale: [null, 0.8], duration: 0.4 }}
-                onClick={() => {
-                  amount === 0 ? () => {} : setAmount(amount - 1);
-                }}
+                onClick={DeleteOnClickHandeler}
                 className=" bg-slate-500 m-[16px] ml-[0px] p-[4px] text-red-900 rounded-[8px] font-medium"
               >
                 - Add
