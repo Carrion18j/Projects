@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FoodImg from "../assets/food.jpg";
 import { motion } from "framer-motion";
 import Items from "./Items";
 
-const Hero = ({ cartArray }) => {
+const Hero = (props) => {
+  const [cartArray, setCartArray] = useState([]);
+
+  useEffect(() => {
+    props.cartArray(cartArray);
+  }, [cartArray]);
+
   return (
     <section>
       <div>
@@ -27,7 +33,7 @@ const Hero = ({ cartArray }) => {
           course byexperienced chefs!
         </p>
       </motion.div>
-      <Items cartArray={cartArray} />
+      <Items cartArray={(e) => setCartArray(e)} />
     </section>
   );
 };

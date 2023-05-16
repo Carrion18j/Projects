@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Cart from "../assets/cart.svg";
+import cartItems from "../context/cart-list";
 
 const Navbar = ({ cartState }) => {
   const [cartAvtive, setCartAvtive] = useState(true);
+  const cart = React.useContext(cartItems);
 
   const cartStateHandler = () => {
     setCartAvtive(!cartAvtive);
@@ -36,8 +38,8 @@ const Navbar = ({ cartState }) => {
         <button className=" text-yellow-50  font-extrabold" itemType="button">
           Your Cart
         </button>
-        <p className=" bg-red-600 p-[4px] text-yellow-50  font-extrabold  flex justify-center items-center rounded-[8px]">
-          {`${!cartAvtive}`}
+        <p className=" min-w-[36px] bg-red-600 p-[4px] text-yellow-50  font-extrabold  flex justify-center items-center rounded-[8px]">
+          {cart.cartItems.length}
         </p>
       </motion.div>
     </nav>

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import foodList from "../data/foodList";
 import { motion } from "framer-motion";
 
-const Items = () => {
+const Items = (props) => {
   const [orderedItems, setOrderedItems] = useState([]);
 
   useEffect(() => {
-    const FinalOrderedList = React.createContext(orderedItems);
-    console.log(orderedItems);
+    props.cartArray(orderedItems)
   }, [orderedItems]);
 
   return (
@@ -32,11 +31,11 @@ const Items = () => {
           );
           if (itemIndex === -1) {
             newItem = {
+              quantity: 1,
+              ItemId: id,
               item: items.name,
               price: items.price,
               about: items.about,
-              quantity: 1,
-              ItemId: id,
             };
             exsistingArray.push(newItem);
           } else {
@@ -75,10 +74,7 @@ const Items = () => {
 
           orderedItems.forEach((e) => {
             if (e.quantity === 0) {
-              const popedItem = exsistingArray.splice(e.quantity, 1);
-              console.log(popedItem)
-
-              // return setOrderedItems(() => [...popedItem]);
+              exsistingArray.splice(orderedItems.indexOf(e),1)
             }
           });
 
@@ -106,6 +102,7 @@ const Items = () => {
                 <input
                   type="text"
                   id="foodAmount"
+                  disabled
                   value={amount}
                   className=" text-center w-[38px] bg-white border-[0px] rounded-[8px] ml-[10px]"
                 />
