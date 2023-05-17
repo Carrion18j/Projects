@@ -13,7 +13,7 @@ const Hero = (props) => {
   return (
     <section>
       <div>
-        <img src={FoodImg} alt="FoodImg" className=" opacity-[0.8] absolute" />
+        <img src={FoodImg} alt="FoodImg" className=" opacity-[0.8] absolute" /  >
       </div>
       <motion.div
         whileHover={{ scale: [null, 1.1], duration: 0.3 }}
