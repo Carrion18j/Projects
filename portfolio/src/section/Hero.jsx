@@ -1,4 +1,5 @@
 import React from "react";
+import profilePic from "../pics/profileImg.png";
 import "./css/hero.css";
 import bgPattern from "../pics/bgPattern.jpg";
 
@@ -18,6 +19,9 @@ const Hero = () => {
             Hire Me
           </button>
         </div>
+      </div>
+      <div className="ImgBox absolute top-[25%] left-[50%] z-10 h-[400px] w-auto">
+        <img src={profilePic} alt="Img" className="imgBoxImg h-[100%] w-[100%]" />
       </div>
       <div className="boxShadow" />
       <div className="h-[100%] w-[40%] border-[#1f1f1f] border-[10px]">
