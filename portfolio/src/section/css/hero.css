@@ -1,0 +1,15 @@
+.boxShadow {
+  -webkit-box-shadow: 0px 0px 300px 72px rgba(133, 111, 111, 0.9);
+  -moz-box-shadow: 0px 0px 300px 72px rgba(133, 111, 111, 0.9);
+  box-shadow: 0px 0px 300px 72px rgba(133, 111, 111, 0.9);
+}
+.hireMeButton{
+    transition: all ;
+    transition-duration: 400ms;
+}
+.hireMeButton:hover {
+  scale: 1.1;
+  -webkit-box-shadow: 0px 0px 73px 29px rgba(133, 111, 111, 0.9);
+  -moz-box-shadow: 0px 0px 73px 29px rgba(133, 111, 111, 0.9);
+  box-shadow: 0px 0px 73px 29px rgba(133, 111, 111, 0.9);
+}
