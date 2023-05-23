@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import foodList from "../data/foodList";
 import { motion } from "framer-motion";
 
@@ -6,21 +6,61 @@ const Items = (props) => {
   const [orderedItems, setOrderedItems] = useState([]);
 
   useEffect(() => {
-    props.cartArray(orderedItems)
+    props.cartArray(orderedItems);
   }, [orderedItems]);
+
+  const fetchMoviesHandler = useCallback(async () => {
+    const response = await fetch(
+      "https://foodapp-984a7-default-rtdb.firebaseio.com/fooditems.json"
+    );
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+
+    const data = await response.json();
+
+    const loadedMovies = [];
+
+    for (const key in data) {
+      loadedMovies.push({
+        id: key,
+        title: data[key].title,
+        about: data[key].openingText,
+        price: data[key].releaseDate,
+      });
+
+      console.log(loadedMovies);
+    }
+  }, []);
+
+  // sending http request
+  async function addMovieHandler(items) {
+    const responce = await fetch(
+      "https://react-http-req-ff1f2-default-rtdb.firebaseio.com/movies.json",
+      {
+        method: "POST",
+        body: JSON.stringify(items),
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+
+    const data = await responce.json();
+    
+    console.log(data);
+    fetchMoviesHandler();
+  }
+
+  // calling functions
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   return (
     <div className="flex flex-col justify-center absolute left-[50%] transform -translate-x-1/2 top-[80vh] ">
       {foodList.map((items, id) => {
         const [amount, setAmount] = useState(0);
-
-        const ReturningItem = {
-          item: items.name,
-          price: items.price,
-          about: items.about,
-          amount: amount,
-          ItemId: id,
-        };
 
         const AddOnClickHandeler = () => {
           amount === 20 ? () => {} : setAmount((e) => e + 1);
@@ -74,7 +114,7 @@ const Items = (props) => {
 
           orderedItems.forEach((e) => {
             if (e.quantity === 0) {
-              exsistingArray.splice(orderedItems.indexOf(e),1)
+              exsistingArray.splice(orderedItems.indexOf(e), 1);
             }
           });
 
