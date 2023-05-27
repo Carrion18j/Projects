@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import FoodImg from "../assets/food.jpg";
-import { motion } from "framer-motion";
 import Items from "./Items";
 
 const Hero = (props) => {
@@ -11,13 +10,12 @@ const Hero = (props) => {
   }, [cartArray]);
 
   return (
-    <section>
+    <section className="flex flex-col justify-center items-center gap-[26px]">
       <div>
         {/* <img src={FoodImg} alt="FoodImg" className=" opacity-[0.8] absolute" /> */}
       </div>
-      <motion.div
-        whileHover={{ scale: [null, 1.1], duration: 0.3 }}
-        className=" bg-slate-800 p-[40px] rounded-[16px] absolute top-[25%] left-[31.5%]  "
+      <div
+        className=" bg-slate-800 p-[40px] rounded-[16px] max-w-[400px]"
       >
         <h1 className=" text-white font-bold text-[26px] text-center">
           Delicious Food, Dilivered To You
@@ -32,7 +30,7 @@ const Hero = (props) => {
           <br />
           course byexperienced chefs!
         </p>
-      </motion.div>
+      </div>
       <Items cartArray={(e) => setCartArray(e)} />
     </section>
   );

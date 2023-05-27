@@ -58,7 +58,7 @@ const Items = (props) => {
   }, [fetchMoviesHandler]);
 
   return (
-    <div className="flex flex-col justify-center absolute left-[50%] transform -translate-x-1/2 top-[80vh] ">
+    <div className="flex flex-col justify-center max-w-[600px]">
       {foodList.map((items, id) => {
         const [amount, setAmount] = useState(0);
 
