@@ -7,7 +7,23 @@ const CartPopUp = () => {
   const cart = useContext(cartItems);
 
   useEffect(() => {
-    if (cart.cartItems.length < 1 || cart.cartItems == undefined) {
+    console.log(loadedDishes);
+  }, [cart]);
+
+  const loadedDishes = [];
+    const disches = cart.cartItems;
+
+    for (const key in disches) {
+      loadedDishes.push({
+        id: key,
+        name: disches[key].name,
+        price: disches[key].price,
+        description: disches[key].description,
+      });
+    }
+
+  useEffect(() => {
+    if (cart.length < 1 || cart == undefined) {
       setShowPlaceOrder(false);
     } else {
       setShowPlaceOrder(true);

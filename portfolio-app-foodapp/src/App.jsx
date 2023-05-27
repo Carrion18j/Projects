@@ -13,10 +13,10 @@ const App = () => {
   };
 
   const formStateChangeHandler = (e) => {
-      setShowContent(e);
+    setShowContent(e);
   };
 
-  return !showContent ? (
+  return showContent ? (
     <Form formState={formStateChangeHandler} />
   ) : (
     <CartList.Provider value={{ cartItems: cartArray }}>
