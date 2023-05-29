@@ -1,13 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
-import foodList from "../data/foodList";
 import MealItems from "./components/MealItems";
-
-const Items = (props) => {
+const Items = ({ cartArray }) => {
   const [orderedItems, setOrderedItems] = useState([]);
   const [dishesList, setDishesList] = useState([]);
 
   useEffect(() => {
-    props.cartArray(orderedItems);
+    cartArray(orderedItems);
   }, [orderedItems]);
 
   useEffect(() => {

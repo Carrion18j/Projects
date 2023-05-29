@@ -31,7 +31,7 @@ const App = () => {
           className={`${
             cartState
               ? "absolute right-[2%] top-[20vh] bg-transparent"
-              : " hidden"
+              : "hidden"
           }`}
         >
           <CartPopUp />

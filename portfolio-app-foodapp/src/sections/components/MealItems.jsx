@@ -5,20 +5,17 @@ const MealItems = ({ foodList, items }) => {
   const [orderedItems, setOrderedItems] = useState([]);
   const [amount, setAmount] = useState(0);
 
-  useEffect(() => {
-    foodList(orderedItems);
-  }, [orderedItems]);
-
   const AddOnClickHandeler = () => {
     amount === 20 ? () => {} : setAmount((e) => e + 1);
     let newItem;
     let exsistingArray = orderedItems;
+
     const itemIndex = orderedItems.findIndex(
       (value) => value.item === items.name
     );
     if (itemIndex === -1) {
       newItem = {
-        quantity: 1,
+        quantity: amount + 1,
         name: items.name,
         price: items.price,
         description: items.description,
@@ -44,7 +41,7 @@ const MealItems = ({ foodList, items }) => {
     );
     if (itemIndex === -1) {
       newItem = {
-        quantity: 1,
+        quantity: amount - 1,
         name: items.name,
         price: items.price,
         description: items.description,
@@ -65,6 +62,10 @@ const MealItems = ({ foodList, items }) => {
 
     return setOrderedItems(() => [...exsistingArray]);
   };
+
+  useEffect(() => {
+    foodList(orderedItems);
+  }, [orderedItems]);
 
   return (
     <motion.div
@@ -111,3 +112,60 @@ const MealItems = ({ foodList, items }) => {
 };
 
 export default MealItems;
+
+// const AddOnClickHandeler = () => {
+//   amount === 20 ? () => {} : setAmount((e) => e + 1);
+//   let newItem;
+//   let exsistingArray = orderedItems;
+//   const itemIndex = orderedItems.findIndex(
+//     (value) => value.item === items.name
+//   );
+//   if (itemIndex === -1) {
+//     newItem = {
+//       quantity: 1,
+//       name: items.name,
+//       price: items.price,
+//       description: items.description,
+//     };
+//     exsistingArray.push(newItem);
+//   } else {
+//     const newItem = orderedItems[itemIndex];
+//     newItem.quantity = newItem.quantity + 1;
+//     exsistingArray.splice(itemIndex, 1);
+//     exsistingArray.push(newItem);
+//   }
+
+//   return setOrderedItems(() => [...exsistingArray]);
+// };
+
+// const DeleteOnClickHandeler = () => {
+//   amount === 0 ? () => {} : setAmount((e) => e - 1);
+
+//   let newItem;
+//   let exsistingArray = orderedItems;
+//   const itemIndex = orderedItems.findIndex(
+//     (value) => value.item === items.name
+//   );
+//   if (itemIndex === -1) {
+//     newItem = {
+//       quantity: 1,
+//       name: items.name,
+//       price: items.price,
+//       description: items.description,
+//     };
+//     exsistingArray.push(newItem);
+//   } else {
+//     const newItem = orderedItems[itemIndex];
+//     newItem.quantity = newItem.quantity - 1;
+//     exsistingArray.splice(itemIndex, 1);
+//     exsistingArray.push(newItem);
+//   }
+
+//   orderedItems.forEach((e) => {
+//     if (e.quantity === 0) {
+//       exsistingArray.splice(orderedItems.indexOf(e), 1);
+//     }
+//   });
+
+//   return setOrderedItems(() => [...exsistingArray]);
+// };
